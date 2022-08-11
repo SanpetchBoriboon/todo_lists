@@ -4,6 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
+    "dev:install": "cd server && yarn",
     "dev:server": "cd server && yarn dev",
     "docker:up": "docker-compose up -d",
     "docker:down": "docker-compose down"
