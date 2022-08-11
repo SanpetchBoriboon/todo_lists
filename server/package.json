@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "nodemon index.js",
     "migrate:latest": "knex migrate:latest",
-    "migrate:make": "knex migrate:make"
+    "migrate:make": "knex migrate:make",
+    "migrate:default": "knex migrate:make todo_list,ping_pong"
   },
   "dependencies": {
     "body-parser": "^1.19.0",
