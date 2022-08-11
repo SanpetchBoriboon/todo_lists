@@ -6,7 +6,7 @@ log4js.configure({
     console: { type: "console" },
   },
   categories: {
-    fileLog: { appenders: ["files"], level: "ALL" },
+    fileLog: { appenders: ["console", "files"], level: "ALL" },
     default: { appenders: ["console"], level: "ALL" },
   },
 });
