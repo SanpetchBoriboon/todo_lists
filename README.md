@@ -4,7 +4,7 @@
 
 #### First step create database
 
-- Open terminal or Editer can use terminal and use command`yarn docker:up` or `docker-compose up -d` at server file
+- Open terminal or Editer can use terminal and use command`yarn docker:up` or `docker-compose up -d`
 - At todo list folder` cd server -> yarn migration:latest` when run this all scripts database created success!!
 - Go to migrations folder has 2 migration files
   - todo list
