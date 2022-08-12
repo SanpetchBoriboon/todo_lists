@@ -1,12 +1,18 @@
-exports.up = function (knex) {
-  return knex.schema.createTableIfNotExists(
-    "ping_pong_table",
-    function (table) {
-      table.increments("id").primary().unique().index();
-    }
-  );
+const tableName = "ping_pong_table";
+
+exports.up = async function (knex) {
+  const exists = await knex.schema.hasTable(tableName);
+  if (!exists) {
+    await knex.schema
+      .createTable(tableName, function (table) {
+        table.string("message");
+      })
+      .then(function () {
+        return knex(tableName).insert({ message: "pong" });
+      });
+  }
 };
 
-exports.down = function (knex) {
-  return knex.schema.dropTableIfExists("ping_pong_table");
+exports.down = async function (knex) {
+  await knex.schema.dropTableIfExists(tableName);
 };

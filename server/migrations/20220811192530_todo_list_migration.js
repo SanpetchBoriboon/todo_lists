@@ -1,11 +1,16 @@
-exports.up = function (knex) {
-  return knex.schema.createTableIfNotExists("todo_table", function (table) {
-    table.increments("id").primary().unique().index();
-    table.string("title").notNull();
-    table.text("decription").nullable();
-  });
+const tableName = "todo_table";
+
+exports.up = async function (knex) {
+  const exists = await knex.schema.hasTable(tableName);
+  if (!exists) {
+    await knex.schema.createTable(tableName, function (table) {
+      table.increments("id").primary().unique().index();
+      table.string("title").notNull();
+      table.text("decription").nullable();
+    });
+  }
 };
 
-exports.down = function (knex) {
-  return knex.schema.dropTableIfExists("todo_table");
+exports.down = async function (knex) {
+  await knex.schema.dropTableIfExists(tableName);
 };
