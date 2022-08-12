@@ -3,10 +3,6 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.formatOnSave": true
   },
-  "[typescript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
-    "editor.formatOnSave": true
-  },
   "[yaml]": {
     "editor.formatOnSave": false
   },
@@ -14,10 +10,7 @@
     "source.fixAll.eslint": true
   },
   "editor.formatOnSave": true,
-  "editor.formatOnSaveTimeout": 10000,
   "editor.tabSize": 2,
-  "eslint.validate": ["javascript", "typescript"],
-  "eslint.workingDirectories": ["./"],
   "files.exclude": {
     "**/.git": true,
     "**/.svn": true,
@@ -35,5 +28,4 @@
     "**/node_modules": true,
     "node_modules": true
   },
-  "typescript.preferences.importModuleSpecifier": "relative"
 }

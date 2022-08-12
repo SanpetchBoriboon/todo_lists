@@ -1,18 +1,18 @@
-const tableName = "ping_pong_table";
+const tableName = 'ping_pong_table'
 
 exports.up = async function (knex) {
-  const exists = await knex.schema.hasTable(tableName);
+  const exists = await knex.schema.hasTable(tableName)
   if (!exists) {
     await knex.schema
       .createTable(tableName, function (table) {
-        table.string("message");
+        table.string('message')
       })
       .then(function () {
-        return knex(tableName).insert({ message: "pong" });
-      });
+        return knex(tableName).insert({ message: 'pong' })
+      })
   }
-};
+}
 
 exports.down = async function (knex) {
-  await knex.schema.dropTableIfExists(tableName);
-};
+  await knex.schema.dropTableIfExists(tableName)
+}

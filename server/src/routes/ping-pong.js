@@ -1,19 +1,7 @@
-const route = require("express").Router();
-const db = require("../../database-connecting");
+const router = require('express').Router()
 
-const logConfig = require("../logs/config");
-const logger = logConfig.getLogger();
+var controller = require('../controllers/ping-pong')
 
-const tableNamne = "ping_pong_table";
+router.get('/', controller.pong)
 
-route.get("/ping", async (req, res) => {
-  try {
-    const message = await db(tableNamne).select();
-    res.status(200).send(message);
-  } catch (error) {
-    logger.error(error);
-    throw error;
-  }
-});
-
-module.exports = route;
+module.exports = router

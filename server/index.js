@@ -1,27 +1,21 @@
-const bodyParser = require("body-parser");
-const express = require("express");
-const fs = require("fs");
-const path = require("path");
-const morgan = require("morgan");
-const logsConfig = require("./src/logs/config");
+const bodyParser = require('body-parser')
+const express = require('express')
+const logsConfig = require('./src/logs/config')
+const { PORT } = require('./config')
 
-const pingPongRoutes = require("./src/routes/ping-pong");
-const todoListRoutes = require("./src/routes/todo-lists");
+const routes = require('./src/routes')
 
-const PORT = 3000;
-
-const app = express();
+const app = express()
 
 // parse application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: false }))
 // parse application/json
-app.use(bodyParser.json());
+app.use(bodyParser.json())
+app.use(routes)
 
-const logger = logsConfig.getLogger();
+const logger = logsConfig.getLogger()
 
-app.use(pingPongRoutes);
-app.use(todoListRoutes);
-
-app.listen(PORT, () => {
-  logger.info(`Sever connected: ${PORT}`);
-});
+const port = PORT || 3000
+app.listen(port, () => {
+  logger.info(`Sever connected: ${port}`)
+})
