@@ -4,9 +4,10 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "dev:install": "cd server && yarn",
-    "dev:server": "cd server && yarn dev",
+    "dep:install": " ./scripts/dep-install.sh",
+    "docker:down": "docker-compose down",
     "docker:up": "docker-compose up -d",
-    "docker:down": "docker-compose down"
+    "migrate:latest": " ./scripts/migrations.sh",
+    "dev": " ./scripts/server.sh"
   }
 }
