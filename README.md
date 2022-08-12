@@ -15,7 +15,7 @@
 - Open terminal at todo lists folder use command `yarn dep:install`
 - before run yarn success, use command `yarn dev`
   - At terminal should display log message `Server connected:3000` (default port is 3000)
-  - Use endpoint `localhost/ping` at postman or tool for send API if send require this url `localhost/ping` and return response show
+  - Use endpoint `localhost/ping` at postman or tool for send API if send require this url `localhost/ping` and return response should show
   ```
   [
     {
