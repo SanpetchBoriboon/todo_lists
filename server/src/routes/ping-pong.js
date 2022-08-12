@@ -1,6 +1,6 @@
 const router = require('express').Router()
 
-var controller = require('../controllers/ping-pong')
+const controller = require('../controllers/ping-pong')
 
 router.get('/', controller.pong)
 

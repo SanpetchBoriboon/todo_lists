@@ -1,5 +1,6 @@
 const bodyParser = require('body-parser')
 const express = require('express')
+
 const logsConfig = require('./src/logs/config')
 const { PORT } = require('./config')
 

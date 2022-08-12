@@ -1,5 +1,4 @@
-const express = require('express')
-const rootRouter = express.Router()
+const rootRouter = require('express').Router()
 
 rootRouter.use('/ping', require('./ping-pong'))
 rootRouter.use('/', require('./todo-lists'))

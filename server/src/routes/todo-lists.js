@@ -1,19 +1,7 @@
-const route = require("express").Router();
-const db = require("../../database-connecting");
+const router = require('express').Router()
 
-const logConfig = require("../logs/config");
-const logger = logConfig.getLogger();
+var controller = require('../controllers/todo-lists')
 
-const tableName = "todo_table";
+router.get('/', controller.getAll)
 
-route.get("/", async (req, res) => {
-  try {
-    const response = await db(tableName).select();
-    res.status(200).send({ results: response });
-  } catch (error) {
-    logger.error(error);
-    throw error;
-  }
-});
-
-module.exports = route;
+module.exports = router
