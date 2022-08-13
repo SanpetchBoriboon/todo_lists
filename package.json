@@ -7,7 +7,7 @@
     "dep:install": " ./scripts/dep-install.sh",
     "docker:down": "docker-compose down",
     "docker:up": "docker-compose up -d",
-    "migrate:latest": " ./scripts/migrations.sh",
+    "migrations": " ./scripts/migrations.sh",
     "dev": " ./scripts/server.sh"
   }
 }
