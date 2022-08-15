@@ -4,9 +4,6 @@ exports.up = function (knex) {
   return knex.schema.createTable(tableName, function (table) {
     table.string('message')
   })
-  // .then(function () {
-  //   return knex(tableName).insert({ message: 'pong' })
-  // })
 }
 
 exports.down = async function (knex) {

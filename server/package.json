@@ -4,6 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
+    "start": "node index.js",
     "dev": "nodemon index.js",
     "migrate:latest": "knex migrate:latest",
     "migrate:make": "knex migrate:make",
@@ -11,9 +12,11 @@
     "seed:run": "knex seed:run"
   },
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
     "dotenv": "^16.0.1",
     "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
     "knex": "^0.19.4",
     "log4js": "^6.6.1",
     "pg": "^8.7.3"
