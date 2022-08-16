@@ -1,7 +1,7 @@
 const bodyParser = require('body-parser')
 const express = require('express')
 const morgan = require('morgan')
-const { port, environment } = require('./environment-configs')
+const { port, environment, base_url } = require('./environment-configs')
 
 const logsConfig = require('./src/logs/log-configs')
 
@@ -26,5 +26,5 @@ app.use(errorResponder)
 app.use(invalidPathHandler)
 
 app.listen(port, () => {
-  logger.info(`app listening at port:${portConnect}`)
+  logger.info(`app listening at ${base_url}:${portConnect}`)
 })

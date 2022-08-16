@@ -1,4 +1,4 @@
-const request = require('./client')
+const request = require('../client')
 
 describe('Todo Lists', () => {
   it('get all lists', async () => {
