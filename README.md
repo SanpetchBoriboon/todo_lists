@@ -5,7 +5,7 @@
 ```
   - yarn docker:up / docker-compose up -d
   - yarn dep:install
-  - yarn migration
+  - yarn migrations
   - yarn dev
 ```
 
@@ -25,6 +25,7 @@
     database_url= 'database url postgres'
     port='port number'
     environment='production flag'
+    base_url='url' (default http://localhost)
   ```
 - Open terminal at todo lists folder use command `yarn dep:install`
 - before run yarn success, use command `yarn dev`
@@ -41,7 +42,7 @@
 
 #### Route path
 
-##### list route
+##### todo-list routes
 
 ```
   get all:
@@ -67,4 +68,12 @@
   delete:
     method: DELETE
     path: /list/:id - :id is number
+```
+
+##### ping-pong routes
+
+```
+  ping:
+    method: GET
+    path: /ping
 ```

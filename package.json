@@ -5,11 +5,11 @@
   "license": "MIT",
   "scripts": {
     "dep:install": " ./scripts/dep-install.sh",
-    "docker:down": "docker-compose down",
-    "docker:up": "docker-compose up -d",
-    "migrations": " ./scripts/migrations.sh",
     "dev": " cd server && yarn dev",
-    "start": "cd server && yarn start",
-    "test": "./scripts/test.sh"
+    "dc:down": "docker-compose down",
+    "dc:up": "docker-compose up -d",
+    "migrations": " ./scripts/migrations.sh",
+    "start": "cd server && yarn server",
+    "test": "cd server && yarn test:ci"
   }
 }

@@ -4,14 +4,14 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "server": "node index.js",
     "dev": "nodemon index.js",
     "migrate:latest": "knex migrate:latest",
     "migrate:make": "knex migrate:make",
     "seed:make": "knex seed:make",
     "seed:run": "knex seed:run",
-    "test": "sleep 5 && jest",
-    "test:ci": "concurrently \"yarn server\" \"yarn test\""
+    "server": "node index.js",
+    "test": " jest",
+    "test:ci": "concurrently \"yarn server\" \"sleep 1 && yarn test\""
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
