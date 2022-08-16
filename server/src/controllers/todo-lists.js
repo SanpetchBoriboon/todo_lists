@@ -1,3 +1,4 @@
+const stausCode = require('http-status')
 const db = require('../../database-connecting')
 const logConfig = require('../logs/config')
 const logger = logConfig.getLogger()
@@ -8,7 +9,7 @@ module.exports = {
   getAll: async (req, res) => {
     try {
       const response = await db(tableName).select()
-      res.status(200).send({ results: response })
+      res.status(stausCode.OK).send({ results: response })
     } catch (error) {
       logger.error(error)
       throw error
@@ -19,7 +20,7 @@ module.exports = {
     const { id } = req.params
     try {
       const response = await db(tableName).where('id', id)
-      res.status(200).send({ results: response })
+      res.status(stausCode.OK).send({ results: response })
     } catch (error) {
       logger.error(error)
       throw error
@@ -30,7 +31,7 @@ module.exports = {
     const { title, description } = req.body
     try {
       const response = await db(tableName).insert({ title: title, description: description })
-      res.status(200).send({ results: response })
+      res.status(stausCode.CREATED).send({ results: response })
     } catch (error) {
       logger.error(error)
       throw error
@@ -42,7 +43,7 @@ module.exports = {
     const { title, description } = req.body
     try {
       const response = await db(tableName).where('id', id).update({ title: title, description: description })
-      res.status(200).send({ results: response })
+      res.status(stausCode.OK).send({ results: response })
     } catch (error) {
       logger.error(error)
       throw error
@@ -52,8 +53,8 @@ module.exports = {
   delete: async (req, res) => {
     const { id } = req.params
     try {
-      await db(tableName).where('id', id).delete()
-      res.status(200)
+      const response = await db(tableName).where('id', id).delete()
+      res.status(stausCode.OK).send({ message: 'Deleted', response })
     } catch (error) {
       logger.error(error)
       throw error
