@@ -6,11 +6,11 @@ const tableNamne = 'ping_pong_table'
 module.exports = {
   pong: async (req, res, next) => {
     try {
-      const message = await db(tableNamne).select()
-      if (!message.length) {
+      const response = await db(tableNamne).select()
+      if (!response.length) {
         res.status(stausCode.NOT_FOUND).send({ message: 'NOT FOUND' })
       }
-      res.status(stausCode.OK).send(message)
+      res.status(stausCode.OK).send({ results: response })
     } catch (error) {
       next(error)
     }
