@@ -20,11 +20,11 @@ module.exports = {
     })
   },
 
-  invalidPathHandler: (error, req, res, next) => {
+  invalidPathHandler: (req, res, next) => {
     res.status(statusCode.NOT_FOUND).send({
       error: {
         code: statusCode.NOT_FOUND,
-        message: error.message,
+        message: 'NOT FOUND',
       },
     })
   },

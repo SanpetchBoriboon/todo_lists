@@ -8,6 +8,7 @@ const routes = require('./src/routes')
 const { errorLogger, errorResponder, invalidPathHandler } = require('./src/middlewares/errorHandler')
 
 const app = express()
+const port = PORT || 3000
 const logger = logsConfig.getLogger()
 
 // parse application/x-www-form-urlencoded
@@ -21,7 +22,6 @@ app.use(errorLogger)
 app.use(errorResponder)
 app.use(invalidPathHandler)
 
-const port = PORT || 3000
 app.listen(port, () => {
   logger.info(`app listening at port:${port}`)
 })
