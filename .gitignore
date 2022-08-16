@@ -2,3 +2,4 @@ node_modules
 *.log
 postgresql
 *.env
+.DS_Store
