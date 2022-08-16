@@ -1,5 +1,5 @@
 const statusCode = require('http-status')
-const logConfig = require('../logs/config')
+const logConfig = require('../logs/log-configs')
 const logger = logConfig.getLogger()
 
 module.exports = {

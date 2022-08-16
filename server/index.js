@@ -1,9 +1,9 @@
 const bodyParser = require('body-parser')
 const express = require('express')
 const morgan = require('morgan')
-const { port, environment } = require('./config')
+const { port, environment } = require('./environment-configs')
 
-const logsConfig = require('./src/logs/config')
+const logsConfig = require('./src/logs/log-configs')
 
 const routes = require('./src/routes')
 const { errorLogger, errorResponder, invalidPathHandler } = require('./src/middlewares/errorHandler')

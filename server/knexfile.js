@@ -1,4 +1,4 @@
-const { database_url } = require('./config')
+const { database_url } = require('./environment-configs')
 
 module.exports = {
   client: 'pg',
