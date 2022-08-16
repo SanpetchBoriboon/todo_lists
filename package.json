@@ -9,6 +9,7 @@
     "docker:up": "docker-compose up -d",
     "migrations": " ./scripts/migrations.sh",
     "dev": " cd server && yarn dev",
-    "start": "cd server && yarn start"
+    "start": "cd server && yarn start",
+    "test": "./scripts/test.sh"
   }
 }
