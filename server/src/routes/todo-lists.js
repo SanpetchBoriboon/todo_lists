@@ -2,7 +2,7 @@ const router = require('express').Router()
 
 var controller = require('../controllers/todo-lists')
 
-router.get('/all', controller.getAll)
+router.get('/', controller.getAll)
 router.get('/:id', controller.getById)
 router.post('/', controller.add)
 router.patch('/:id/edit', controller.edit)

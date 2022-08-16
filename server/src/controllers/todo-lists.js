@@ -1,9 +1,6 @@
 const stausCode = require('http-status')
 const db = require('../../database-connecting')
-const logsConfig = require('../logs/config')
-
 const tableName = 'todo_table'
-const logger = logsConfig.getLogger()
 
 module.exports = {
   getAll: async (req, res, next) => {

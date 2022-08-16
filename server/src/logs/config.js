@@ -1,16 +1,16 @@
-const log4js = require("log4js");
+const log4js = require('log4js')
 
 log4js.configure({
   appenders: {
-    files: { type: "file", filename: __dirname + "/files/log4js.log" },
-    console: { type: "console" },
+    files: { type: 'file', filename: __dirname + '/files/log4js.log' },
+    console: { type: 'console' },
   },
   categories: {
-    fileLog: { appenders: ["console", "files"], level: "ALL" },
-    default: { appenders: ["console"], level: "ALL" },
+    fileLog: { appenders: ['console', 'files'], level: 'ALL' },
+    default: { appenders: ['console'], level: 'ALL' },
   },
-});
+})
 
-const logger = log4js;
+const logger = log4js
 
-module.exports = logger;
+module.exports = logger

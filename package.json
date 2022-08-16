@@ -8,6 +8,7 @@
     "docker:down": "docker-compose down",
     "docker:up": "docker-compose up -d",
     "migrations": " ./scripts/migrations.sh",
-    "dev": " ./scripts/server.sh"
+    "dev": " cd server && yarn dev",
+    "start": "cd server && yarn start"
   }
 }

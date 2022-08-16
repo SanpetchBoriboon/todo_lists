@@ -22,8 +22,9 @@
 - Create `.env` in server
   - template cofig
   ```
-    DATABASE_URL= 'database url postgres'
-    PORT= __PORT__
+    database_url= 'database url postgres'
+    port='port number'
+    environment='production flag'
   ```
 - Open terminal at todo lists folder use command `yarn dep:install`
 - before run yarn success, use command `yarn dev`

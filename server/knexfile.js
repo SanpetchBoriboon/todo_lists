@@ -1,7 +1,7 @@
-const { DATABASE_URL } = require('./config')
+const { database_url } = require('./config')
 
 module.exports = {
   client: 'pg',
-  connection: DATABASE_URL || 'postgresql://postgres:postgres@127.0.0.1/postgres',
+  connection: database_url || 'postgresql://postgres:postgres@127.0.0.1/postgres',
   searchPath: ['knex', 'public'],
 }
