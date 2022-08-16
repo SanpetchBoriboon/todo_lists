@@ -38,3 +38,33 @@
   ]
   ```
   , it is considered successful in connecting to the server.
+
+#### Route path
+
+##### list route
+
+```
+  get all:
+    method: GET
+    path: /list
+  get by id:
+    method: GET
+    path: /list/:id - :id is number
+  add:
+    method: POST
+    path: /list
+    body:{
+      title: "title",
+      description: "description"
+    }
+  edit:
+    method: PATCH
+    path: /list/:id/edit - :id is number
+    body:{
+      title: "edit tittle",
+      description: "edit description"
+    }
+  delete:
+    method: DELETE
+    path: /list/:id - :id is number
+```
