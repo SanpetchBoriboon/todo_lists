@@ -1,11 +1,11 @@
 const stausCode = require('http-status')
-const db = require('../../database-connecting')
+const databaseConnect = require('../../database-connecting')
 const tableName = 'todo_table'
 
 module.exports = {
   getAll: async (req, res, next) => {
     try {
-      const response = await db(tableName).select()
+      const response = await databaseConnect(tableName).select()
       if (!response.length) {
         res.status(stausCode.NOT_FOUND).json({ message: 'Not Found' })
       }
@@ -18,7 +18,7 @@ module.exports = {
   getById: async (req, res, next) => {
     const { id } = req.params
     try {
-      const response = await db(tableName).where('id', id)
+      const response = await databaseConnect(tableName).where('id', id)
       if (!response.length) {
         res.status(stausCode.NOT_FOUND).json({ message: 'Not Found' })
       }
@@ -31,7 +31,7 @@ module.exports = {
   add: async (req, res, next) => {
     const { title, description } = req.body
     try {
-      const response = await db(tableName).insert({ title: title, description: description })
+      const response = await databaseConnect(tableName).insert({ title: title, description: description })
       res.status(stausCode.CREATED).send({ results: response })
     } catch (error) {
       next(error)
@@ -42,7 +42,9 @@ module.exports = {
     const { id } = req.params
     const { title, description } = req.body
     try {
-      const response = await db(tableName).where('id', id).update({ title: title, description: description })
+      const response = await databaseConnect(tableName)
+        .where('id', id)
+        .update({ title: title, description: description })
       res.status(stausCode.OK).send({ results: response })
     } catch (error) {
       next(error)
@@ -52,7 +54,7 @@ module.exports = {
   delete: async (req, res, next) => {
     const { id } = req.params
     try {
-      const response = await db(tableName).where('id', id).delete()
+      const response = await databaseConnect(tableName).where('id', id).delete()
       res.status(stausCode.OK).send({ message: 'Deleted', response })
     } catch (error) {
       next(error)
