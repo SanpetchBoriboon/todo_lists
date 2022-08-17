@@ -10,8 +10,7 @@
     "seed:make": "knex seed:make",
     "seed:run": "knex seed:run",
     "server": "node index.js",
-    "test": " jest",
-    "test:ci": "concurrently \"yarn server\" \"sleep 1 && yarn test\""
+    "test": " jest"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
