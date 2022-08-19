@@ -1,6 +1,6 @@
 const stausCode = require('http-status')
 const databaseConnect = require('../../database-connecting')
-const tableName = 'todo_table'
+const tableName = 'users'
 
 module.exports = {
   getAll: async (req, res, next) => {
@@ -23,9 +23,10 @@ module.exports = {
   },
 
   add: async (req, res, next) => {
-    const { title, description } = req.body
+    const { username, password, name } = req.body
+    const insertBody = { username, password, name }
     try {
-      const response = await databaseConnect(tableName).insert({ title: title, description: description })
+      const response = await databaseConnect(tableName).insert(insertBody)
       res.status(stausCode.CREATED).send({ results: response })
     } catch (error) {
       next(error)
