@@ -2,6 +2,6 @@ const { database_url } = require('./environment-configs')
 
 module.exports = {
   client: 'pg',
-  connection: database_url || 'postgresql://postgres:postgres@127.0.0.1/postgres',
+  connection: database_url,
   searchPath: ['knex', 'public'],
 }

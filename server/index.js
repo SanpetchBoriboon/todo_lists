@@ -9,7 +9,6 @@ const routes = require('./src/routes')
 const { errorLogger, errorResponder, invalidPathHandler } = require('./src/middlewares/errorHandler')
 
 const app = express()
-const portConnect = port || 3000
 const logger = logsConfig.getLogger()
 
 app.use(bodyParser.urlencoded({ extended: false }))
@@ -26,5 +25,5 @@ app.use(errorResponder)
 app.use(invalidPathHandler)
 
 app.listen(port, () => {
-  logger.info(`app listening at ${base_url}:${portConnect}`)
+  logger.info(`app listening at ${base_url}:${port}`)
 })

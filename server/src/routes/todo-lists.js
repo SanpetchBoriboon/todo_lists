@@ -1,11 +1,12 @@
 const router = require('express').Router()
 
-var controller = require('../controllers/todo-lists')
+const controller = require('../controllers/todo-lists')
+const auth = require('../middlewares/auth')
 
-router.get('/', controller.getAll)
-router.get('/:id', controller.getById)
-router.post('/', controller.add)
-router.patch('/:id/edit', controller.edit)
-router.delete('/:id', controller.delete)
+router.get('/', auth, controller.getAll)
+router.get('/:id', auth, controller.getById)
+router.post('/', auth, controller.add)
+router.patch('/:id/edit', auth, controller.edit)
+router.delete('/:id', auth, controller.delete)
 
 module.exports = router

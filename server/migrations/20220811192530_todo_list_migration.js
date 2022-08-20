@@ -5,6 +5,7 @@ exports.up = function (knex, Promise) {
     table.increments('id').primary().unique().index()
     table.string('title').notNull()
     table.text('description').nullable()
+    table.integer('user_id').notNullable().references('id').inTable('users_table').onDelete('CASCADE')
   })
 }
 

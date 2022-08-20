@@ -1,11 +1,12 @@
-const tableName = 'users'
+const tableName = 'users_table'
 
 exports.up = function (knex, Promise) {
   return knex.schema.createTable(tableName, function (table) {
     table.increments('id').primary().unique().index()
     table.string('username', 50).notNull().unique()
-    table.string('passsword', 50).notNull()
+    table.string('password', 255).notNull()
     table.string('name', 255).notNull()
+    table.text('token')
   })
 }
 

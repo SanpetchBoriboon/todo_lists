@@ -4,8 +4,9 @@ const tableName = 'todo_table'
 
 module.exports = {
   getAll: async (req, res, next) => {
+    const { user_id } = req.user
     try {
-      const response = await databaseConnect(tableName).select()
+      const response = await databaseConnect(tableName).where('user_id', user_id)
       res.status(stausCode.OK).send({ results: response })
     } catch (error) {
       next(error)
@@ -24,8 +25,14 @@ module.exports = {
 
   add: async (req, res, next) => {
     const { title, description } = req.body
+    const { user_id } = req.user
+    console.log(req.user.user_id)
     try {
-      const response = await databaseConnect(tableName).insert({ title: title, description: description })
+      const response = await databaseConnect(tableName).insert({
+        title: title,
+        description: description,
+        user_id: user_id,
+      })
       res.status(stausCode.CREATED).send({ results: response })
     } catch (error) {
       next(error)
@@ -35,6 +42,7 @@ module.exports = {
   edit: async (req, res, next) => {
     const { id } = req.params
     const { title, description } = req.body
+    const { user_id } = req.user
     try {
       const response = await databaseConnect(tableName)
         .where('id', id)
