@@ -4,9 +4,13 @@ const tableName = 'todo_table'
 
 module.exports = {
   getAll: async (req, res, next) => {
-    const { user_id } = req.user
+    const { user_id, user_role } = req.user
     try {
-      const response = await databaseConnect(tableName).where('user_id', user_id)
+      if (user_role === 'admin') {
+        const response = await databaseConnect(tableName).select()
+        res.status(stausCode.OK).send({ results: response })
+      }
+      const response = await databaseConnect(tableName).where('user_id', user_id).orderBy('id', 'asc')
       res.status(stausCode.OK).send({ results: response })
     } catch (error) {
       next(error)
@@ -15,8 +19,9 @@ module.exports = {
 
   getById: async (req, res, next) => {
     const { id } = req.params
+    const { user_id } = req.user
     try {
-      const response = await databaseConnect(tableName).where('id', id)
+      const response = await databaseConnect(tableName).where('id', id).andWhere('user_id', user_id)
       res.status(stausCode.OK).send({ results: response })
     } catch (error) {
       next(error)
@@ -25,13 +30,13 @@ module.exports = {
 
   add: async (req, res, next) => {
     const { title, description } = req.body
-    const { user_id } = req.user
-    console.log(req.user.user_id)
+    const { user_id, name } = req.user
     try {
       const response = await databaseConnect(tableName).insert({
         title: title,
         description: description,
         user_id: user_id,
+        create_by: name,
       })
       res.status(stausCode.CREATED).send({ results: response })
     } catch (error) {
@@ -46,6 +51,7 @@ module.exports = {
     try {
       const response = await databaseConnect(tableName)
         .where('id', id)
+        .andWhere('user_id', user_id)
         .update({ title: title, description: description })
       res.status(stausCode.OK).send({ results: response })
     } catch (error) {

@@ -6,7 +6,7 @@ exports.up = function (knex, Promise) {
     table.string('username', 50).notNull().unique()
     table.string('password', 255).notNull()
     table.string('name', 255).notNull()
-    table.text('token')
+    table.string('role', 50).notNull()
   })
 }
 
