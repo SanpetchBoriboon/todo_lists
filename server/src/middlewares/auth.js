@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken')
 const httpStatus = require('http-status')
 const { token_key } = require('../../environment-configs')
-const errorMessage = require('../utils/errorMessage')
+const errorMessage = require('../utils/error-message')
 
 function verifyToken(req, res, next) {
   const token = req.headers['x-access-token']

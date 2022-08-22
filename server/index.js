@@ -6,7 +6,7 @@ const { port, environment, base_url } = require('./environment-configs')
 const logsConfig = require('./src/logs/log-configs')
 
 const routes = require('./src/routes')
-const { errorLogger, errorResponder, invalidPathHandler } = require('./src/middlewares/errorHandler')
+const { errorLogger, errorResponder, invalidPathHandler } = require('./src/middlewares/error-handler')
 
 const app = express()
 const logger = logsConfig.getLogger()

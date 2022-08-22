@@ -1,7 +1,6 @@
-const httpStatus = require('http-status')
 const logConfig = require('../logs/log-configs')
 const logger = logConfig.getLogger()
-const errorMessage = require('../utils/errorMessage')
+const errorMessage = require('../utils/error-message')
 
 module.exports = {
   errorLogger: (error, req, res, next) => {
