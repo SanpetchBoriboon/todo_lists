@@ -4,7 +4,7 @@ const { base_url, port } = require('../../environment-configs')
 
 const request = supertest.agent(`${base_url}:${port}`)
 request.on('response', async (response) => {
-  const { request, body, statusCode, headers } = response
+  const { request, body, httpStatus, headers } = response
   const data = {
     request: {
       header: request._header,
@@ -14,7 +14,7 @@ request.on('response', async (response) => {
     },
     response: {
       header: headers,
-      status: statusCode,
+      status: httpStatus,
       body,
     },
   }

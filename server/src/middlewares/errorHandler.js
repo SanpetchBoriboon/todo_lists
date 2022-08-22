@@ -1,30 +1,31 @@
-const statusCode = require('http-status')
+const httpStatus = require('http-status')
 const logConfig = require('../logs/log-configs')
 const logger = logConfig.getLogger()
 
 module.exports = {
-  // Error handling Middleware function for logging the error message
   errorLogger: (error, req, res, next) => {
     logger.error(`Error: ${error.message}`)
-    next(error) // calling next middleware
+    next(error)
   },
 
   errorResponder: (error, req, res, next) => {
-    res.header('Content-Type', 'application/json')
-    const status = error.status || statusCode.BAD_REQUEST
+    res.setHeader('Content-Type', 'application/json')
+    const status = error.status || httpStatus.BAD_REQUEST
     res.status(status).send({
       error: {
         code: status,
-        message: error.message,
+        statusName: error.statusName || httpStatus['400_NAME'],
+        message: error.message || httpStatus['400_MESSAGE'],
       },
     })
   },
 
   invalidPathHandler: (req, res, next) => {
-    res.status(statusCode.NOT_FOUND).send({
+    res.status(httpStatus.NOT_FOUND).send({
       error: {
-        code: statusCode.NOT_FOUND,
-        message: 'NOT FOUND',
+        code: httpStatus.NOT_FOUND,
+        statusName: httpStatus['404_NAME'],
+        message: httpStatus['404_MESSAGE'],
       },
     })
   },

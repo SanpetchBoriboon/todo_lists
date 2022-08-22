@@ -1,4 +1,4 @@
-const stausCode = require('http-status')
+const httpStatus = require('http-status')
 const databaseConnect = require('../../database-connecting')
 const tableName = 'todo_table'
 
@@ -8,10 +8,10 @@ module.exports = {
     try {
       if (user_role === 'admin') {
         const response = await databaseConnect(tableName).select()
-        res.status(stausCode.OK).send({ results: response })
+        return res.status(httpStatus.OK).send({ results: response })
       }
       const response = await databaseConnect(tableName).where('user_id', user_id).orderBy('id', 'asc')
-      res.status(stausCode.OK).send({ results: response })
+      return res.status(httpStatus.OK).send({ results: response })
     } catch (error) {
       next(error)
     }
@@ -22,7 +22,7 @@ module.exports = {
     const { user_id } = req.user
     try {
       const response = await databaseConnect(tableName).where('id', id).andWhere('user_id', user_id)
-      res.status(stausCode.OK).send({ results: response })
+      return res.status(httpStatus.OK).send({ results: response })
     } catch (error) {
       next(error)
     }
@@ -38,8 +38,11 @@ module.exports = {
         user_id: user_id,
         create_by: name,
       })
-      res.status(stausCode.CREATED).send({ results: response })
+      if (response) {
+        return res.status(httpStatus.CREATED).send({ results: { message: httpStatus['201_MESSAGE'] } })
+      }
     } catch (error) {
+      error.message = httpStatus['400_MESSAGE']
       next(error)
     }
   },
@@ -53,7 +56,7 @@ module.exports = {
         .where('id', id)
         .andWhere('user_id', user_id)
         .update({ title: title, description: description })
-      res.status(stausCode.OK).send({ results: response })
+      return res.status(httpStatus.OK).send({ results: response })
     } catch (error) {
       next(error)
     }
@@ -63,7 +66,7 @@ module.exports = {
     const { id } = req.params
     try {
       const response = await databaseConnect(tableName).where('id', id).delete()
-      res.status(stausCode.OK).send({ message: 'Deleted', response })
+      return res.status(httpStatus.OK).send({ message: 'Deleted', response })
     } catch (error) {
       next(error)
     }

@@ -1,23 +1,21 @@
-const stausCode = require('http-status')
+const httpStatus = require('http-status')
 const bcrypy = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 
 const databaseConnect = require('../../database-connecting')
 const { token_key } = require('../../environment-configs')
-const e = require('express')
 const tableName = 'users_table'
 
 module.exports = {
   getUsers: async (req, res, next) => {
     const { user_role, user_id } = req.user
     try {
-      let response
       if (user_role === 'admin') {
-        response = await databaseConnect(tableName).select()
-      } else {
-        response = await databaseConnect(tableName).where('id', user_id)
+        const response = await databaseConnect(tableName).select()
+        return res.status(httpStatus.OK).send({ results: response })
       }
-      res.status(stausCode.OK).send({ results: response })
+      const response = await databaseConnect(tableName).where('id', user_id)
+      return res.status(httpStatus.OK).send({ results: response })
     } catch (error) {
       next(error)
     }
@@ -41,11 +39,10 @@ module.exports = {
           },
         )
         response[0].token = token
-        res.status(stausCode.OK).send(response)
-      } else {
-        res.status(stausCode.BAD_REQUEST).send({ message: 'Invaild Credentials' })
+        return res.status(httpStatus.OK).send(response)
       }
     } catch (error) {
+      error.message = 'Invaild Credentials'
       next(error)
     }
   },
@@ -60,10 +57,10 @@ module.exports = {
         name: name,
         role: role,
       })
-      res.status(stausCode.CREATED).send({ results: response })
+      return res.status(httpStatus.CREATED).send({ results: response })
     } catch (error) {
-      error.status = 409
-      error.message = 'the user exist'
+      error.status = httpStatus.CONFLICT
+      error.message = httpStatus['409_MESSAGE']
       next(error)
     }
   },
@@ -76,7 +73,7 @@ module.exports = {
       const response = await databaseConnect(tableName)
         .where('id', user_id)
         .update({ name: name, password: encryptedPassword })
-      res.status(stausCode.OK).send({ results: response })
+      return res.status(httpStatus.OK).send({ results: response })
     } catch (error) {
       next(error)
     }
@@ -88,10 +85,12 @@ module.exports = {
     try {
       if (user_id != id && user_role === 'admin') {
         const response = await databaseConnect(tableName).where('id', id).delete()
-        res.status(stausCode.OK).send({ message: 'Deleted', response })
-      } else {
-        res.status(stausCode.FORBIDDEN).send({ message: 'Permission denied' })
+        if (response == 0) {
+          return next()
+        }
+        return res.status(httpStatus.OK).send({ message: 'Deleted' })
       }
+      next()
     } catch (error) {
       next(error)
     }
