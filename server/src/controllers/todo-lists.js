@@ -42,7 +42,6 @@ module.exports = {
         return res.status(httpStatus.CREATED).send({ results: { message: httpStatus['201_MESSAGE'] } })
       }
     } catch (error) {
-      error.message = httpStatus['400_MESSAGE']
       next(error)
     }
   },

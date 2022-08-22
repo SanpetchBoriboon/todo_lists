@@ -59,8 +59,8 @@ module.exports = {
       })
       return res.status(httpStatus.CREATED).send({ results: response })
     } catch (error) {
-      error.status = httpStatus.CONFLICT
-      error.message = httpStatus['409_MESSAGE']
+      error.code = 409
+      console.log(error.message)
       next(error)
     }
   },
