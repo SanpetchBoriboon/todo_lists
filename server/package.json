@@ -11,7 +11,9 @@
     "seed:make": "knex seed:make",
     "seed:run": "knex seed:run",
     "server": "node index.js",
-    "test": " jest"
+    "test": " jest",
+    "start:mockdb": "yarn json-server -p 4000 mock-server.json",
+    "test:ci": "concurrently \"yarn start:mockdb\" \"delay=1 && jest\""
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
@@ -29,6 +31,7 @@
     "concurrently": "^7.3.0",
     "jest": "^28.1.3",
     "jest-html-reporters": "^3.0.10",
+    "json-server": "^0.17.0",
     "nodemon": "^1.19.2",
     "supertest": "^6.2.4"
   }

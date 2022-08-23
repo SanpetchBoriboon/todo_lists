@@ -1,0 +1,12 @@
+{
+  "list": {
+    "return": [{}]
+  },
+  "ping": {
+    "results": [
+      {
+        "message": "pong"
+      }
+    ]
+  }
+}

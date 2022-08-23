@@ -1,6 +1,6 @@
 const httpStatus = require('http-status')
 
-function errorMessage(statusCode) {
+function responseStatusMessage(statusCode) {
   const statusName = httpStatus[`${statusCode}_NAME`]
   const message = httpStatus[`${statusCode}_MESSAGE`]
   return {
@@ -10,4 +10,4 @@ function errorMessage(statusCode) {
   }
 }
 
-module.exports = errorMessage
+module.exports = responseStatusMessage
