@@ -1,6 +1,7 @@
 const bodyParser = require('body-parser')
 const express = require('express')
 const morgan = require('morgan')
+const cors = require('cors')
 const { port, environment, base_url } = require('./environment-configs')
 
 const logsConfig = require('./src/logs/log-configs')
@@ -11,6 +12,7 @@ const { errorLogger, errorResponder, invalidPathHandler } = require('./src/middl
 const app = express()
 const logger = logsConfig.getLogger()
 
+app.use(cors())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 

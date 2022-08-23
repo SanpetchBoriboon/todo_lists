@@ -12,10 +12,10 @@ module.exports = {
     try {
       if (user_role === 'admin') {
         const response = await databaseConnect(tableName).select()
-        return res.status(httpStatus.OK).send({ results: response })
+        return res.status(httpStatus.OK).send(response)
       }
       const response = await databaseConnect(tableName).where('id', user_id)
-      return res.status(httpStatus.OK).send({ results: response })
+      return res.status(httpStatus.OK).send(response)
     } catch (error) {
       next(error)
     }
@@ -39,7 +39,8 @@ module.exports = {
           },
         )
         response[0].token = token
-        return res.status(httpStatus.OK).send(response)
+        response[0].message = 'Login success'
+        return res.status(httpStatus.OK).send(response[0])
       }
     } catch (error) {
       error.message = 'Invaild Credentials'
