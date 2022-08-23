@@ -8,10 +8,10 @@ module.exports = {
     try {
       if (user_role === 'admin') {
         const response = await databaseConnect(tableName).select()
-        return res.status(httpStatus.OK).send({ results: response })
+        return res.status(httpStatus.OK).send(response)
       }
       const response = await databaseConnect(tableName).where('user_id', user_id).orderBy('id', 'asc')
-      return res.status(httpStatus.OK).send({ results: response })
+      return res.status(httpStatus.OK).send(response)
     } catch (error) {
       next(error)
     }
@@ -22,7 +22,7 @@ module.exports = {
     const { user_id } = req.user
     try {
       const response = await databaseConnect(tableName).where('id', id).andWhere('user_id', user_id)
-      return res.status(httpStatus.OK).send({ results: response })
+      return res.status(httpStatus.OK).send(response)
     } catch (error) {
       next(error)
     }
@@ -55,7 +55,7 @@ module.exports = {
         .where('id', id)
         .andWhere('user_id', user_id)
         .update({ title: title, description: description })
-      return res.status(httpStatus.OK).send({ results: response })
+      return res.status(httpStatus.OK).send(response)
     } catch (error) {
       next(error)
     }

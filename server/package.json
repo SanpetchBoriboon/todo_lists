@@ -12,8 +12,7 @@
     "seed:run": "knex seed:run",
     "server": "node index.js",
     "test": " jest",
-    "start:mockdb": "yarn json-server -p 4000 mock-server.json",
-    "test:ci": "concurrently \"yarn start:mockdb\" \"delay=1 && jest\""
+    "start:mockdb": "yarn json-server -p 4000 mock-server.json --watch"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
