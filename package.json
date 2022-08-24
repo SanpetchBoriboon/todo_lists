@@ -10,7 +10,8 @@
     "dc:up": "docker-compose up -d",
     "migrations": " ./scripts/migrations.sh",
     "start": "cd server && yarn server",
-    "test": "cd server && yarn test",
+    "test":"cd server && yarn test:ci",
     "clear:db":"rm -rf postgresql"
   }
 }
+
