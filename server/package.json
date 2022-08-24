@@ -12,12 +12,12 @@
     "seed:run": "knex seed:run",
     "server": "node index.js",
     "test": " jest",
-    "start:mockdb": "yarn json-server -p 4000 mock-server.json",
-    "test:ci": "concurrently \"yarn start:mockdb\" \"delay=1 && jest\""
+    "start:mockdb": "yarn json-server -p 4000 mock-server.json --watch"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
     "dotenv": "^16.0.1",
     "express": "^4.17.1",
     "http-status": "^1.5.2",

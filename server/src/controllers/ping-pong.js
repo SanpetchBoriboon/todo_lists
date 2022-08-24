@@ -7,7 +7,7 @@ module.exports = {
   pong: async (req, res, next) => {
     try {
       const response = await databaseConnect(tableNamne).select()
-      return res.status(httpStatus.OK).send({ results: response })
+      return res.status(httpStatus.OK).send(response)
     } catch (error) {
       next(error)
     }

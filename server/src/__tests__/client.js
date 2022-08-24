@@ -1,10 +1,11 @@
 const supertest = require('supertest')
 const { addMsg } = require('jest-html-reporters/helper')
-const { base_url } = require('../../environment-configs')
+const { base_url, port } = require('../../environment-configs')
 
-const request = supertest.agent(`${base_url}:4000`)
+const request = supertest.agent(`${base_url}:${port}`)
+
 request.on('response', async (response) => {
-  const { request, body, httpStatus, headers } = response
+  const { request, body, statusCode, headers } = response
   const data = {
     request: {
       header: request._header,
@@ -14,7 +15,7 @@ request.on('response', async (response) => {
     },
     response: {
       header: headers,
-      status: httpStatus,
+      status: statusCode,
       body,
     },
   }
